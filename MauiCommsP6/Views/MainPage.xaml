@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCommsP6.Views.MainPage"
+             Title=".Net Maui Commands">
+
+  <ScrollView>
+    <VerticalStackLayout Spacing="25" Padding="20">
+      <VerticalStackLayout VerticalOptions="StartAndExpand" BackgroundColor="AliceBlue">
+        <Label
+                Text=".Net Maui Test Commands, v 6.0.486"
+                SemanticProperties.HeadingLevel="Level3"
+                FontSize="16"
+                HorizontalOptions="Center" />
+        <Label Text="Sources" HorizontalOptions="CenterAndExpand" />
+        <Frame BackgroundColor="Beige" Margin="0,0,0,0">
+          <CollectionView ItemsSource="{Binding Actions}" x:Name="ActionsCollection" >
+          <CollectionView.ItemTemplate>
+            <DataTemplate>
+              <Frame BackgroundColor="{Binding Color}" HasShadow="False" Padding="8" Margin="2"
+                     HorizontalOptions="CenterAndExpand" >
+                <Label Text="{Binding  Title}" FontSize="Small"/>
+              </Frame>
+            </DataTemplate>
+          </CollectionView.ItemTemplate>
+        </CollectionView>
+          <Frame.GestureRecognizers>
+            <DragGestureRecognizer DragStartingCommand="{Binding Path=BindingContext.DragStartingCommand, 
+              Source={x:Reference ActionsCollection}}" DragStartingCommandParameter="{Binding .}" />
+            <TapGestureRecognizer Command="{Binding TapSrcCommand}" />
+          </Frame.GestureRecognizers>
+        </Frame>
+      </VerticalStackLayout>
+      <BoxView Color="Coral" HeightRequest="5" HorizontalOptions="Fill" />
+      <VerticalStackLayout VerticalOptions="Center" BackgroundColor="AliceBlue">
+        <Label Text="Targets" HorizontalOptions="Center" />
+        <Frame BackgroundColor="Beige" Margin="0,0,0,0">
+          <CollectionView ItemsSource="{Binding Targets}">
+          <CollectionView.ItemTemplate>
+            <DataTemplate>
+              <Frame BackgroundColor="{Binding Color}" HasShadow="False" Padding="8" Margin="2"
+                     HorizontalOptions="CenterAndExpand" >
+                <Label Text="{Binding  Title}" FontSize="Small"/>
+              </Frame>
+            </DataTemplate>
+          </CollectionView.ItemTemplate>
+          <CollectionView.GestureRecognizers>
+            <DropGestureRecognizer AllowDrop="true" DropCommand="{Binding DropTargetCommand}" />
+          </CollectionView.GestureRecognizers>
+        </CollectionView>
+          </Frame>
+      </VerticalStackLayout>
+      
+      <VerticalStackLayout VerticalOptions="End">
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" BackgroundColor="AliceBlue" >
+          <Button Text="Refill Src" Command="{Binding FillActionsCommand}" />
+          <Button Text="Clear Src" Command="{Binding ClearSoCommand}" />
+          <Button Text="Fill Tgts" Command="{Binding FillTargetsCommand}" />
+          <Button Text="Clear Tgts" Command="{Binding ClearTgCommand}" />
+        </HorizontalStackLayout>
+      </VerticalStackLayout>
+     </VerticalStackLayout>
+  </ScrollView>
+
+</ContentPage>

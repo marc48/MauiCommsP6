@@ -1,11 +1,18 @@
-﻿namespace MauiCommsP6;
+﻿using MauiCommsP6.ViewModels;
+using MauiCommsP6.Views;
+
+namespace MauiCommsP6;
 
 public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
-		builder
+
+        // Toolkit.Maui
+        //builder.UseMauiApp<App>().UseMauiCommunityToolkit();
+
+        builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
@@ -13,6 +20,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+        builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<MainPageViewModel>();
+
+        return builder.Build();
 	}
 }
