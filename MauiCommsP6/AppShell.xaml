@@ -3,12 +3,32 @@
     x:Class="MauiCommsP6.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MauiCommsP6"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:local="clr-namespace:MauiCommsP6.Views"
+    Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:Views.MainPage}"
-        Route="MainPage" />
+  <Shell.FlyoutHeader HeightRequest="100" BackgroundColor="DarkSlateBlue">
+    <StackLayout>
+      <Label Text="------- Header ---------" HorizontalOptions="Center" />
+    </StackLayout>
+  </Shell.FlyoutHeader>
+  <FlyoutItem Title="Main (Code Behind)" Icon="sun.png" >
+    <Tab>
+      <ShellContent
+        ContentTemplate="{DataTemplate local:MainPage}" />
+    </Tab>
+  </FlyoutItem>
+  <FlyoutItem Title="Commands MVVM" Icon="sun.png"  >
+    <Tab>
+      <ShellContent 
+        ContentTemplate="{DataTemplate local:GestCommPage}" />
+    </Tab>
+  </FlyoutItem>
+ 
+  <Shell.FlyoutFooter>
+    <HorizontalStackLayout>
+      <Label Text="------ Footer ----------" HorizontalOptions="CenterAndExpand" />
+
+    </HorizontalStackLayout>
+  </Shell.FlyoutFooter>
 
 </Shell>

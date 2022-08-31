@@ -1,15 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace MauiCommsP6.ViewModels
 {
-    public partial class MainPageViewModel : BaseViewModel
+    public partial class GestCommViewModel : BaseViewModel
     {
         public ObservableCollection<Action> Actions { get; set; } = new();
         public ObservableCollection<Action> Targets { get; set; } = new();
@@ -17,11 +17,7 @@ namespace MauiCommsP6.ViewModels
         [ObservableProperty]
         Action dragAction;
 
-        ICommand TapSource_Tapped;
-        int taps = 0;
-        string numberOfTapsTapped;
-
-        public MainPageViewModel()
+        public GestCommViewModel()
         {
             Targets = new ObservableCollection<Action>()
             {
@@ -37,18 +33,36 @@ namespace MauiCommsP6.ViewModels
             };
             // OrangeRed //ForestGreen  // LightSkyBlue)
 
-            TapSource_Tapped = new Command(OnTapped);
         }
 
-        void OnTapped(object s)
-        {
-            taps++;
-            Debug.WriteLine("parameter: " + s);
-            numberOfTapsTapped = String.Format("{0} tap{1} so far!",
-                taps,
-                taps == 1 ? "" : "s");
-        }
+        //[RelayCommand]
+        //async Task DragStartingAsync<Action>(title)
+        //{
+        //    dragAction = ;
+        //}
 
+        //public ICommand DragStartingCommand => new Command<Action>((param) =>
+        //{
+        //    dragAction = param;
+        //    //Debug.WriteLine(param.ToString());
+        //});
+
+        //public ICommand DropTargetCommand => new Command(() =>
+        //{
+        //    if (Actions.Contains(dragAction))
+        //    {
+        //        Targets.Add(dragAction);
+        //        Actions.Remove(dragAction);
+        //    }
+        //});
+
+        //[RelayCommand]
+        //async Task TapSrcAsync<Action>()
+        //{
+        //    await Shell.Current.DisplayAlert("Tap auf Source", "Message", "OK");
+        //    //Targets.Add(dragAction);
+        //    //Actions.Remove(dragAction);
+        //}
 
         [RelayCommand]
         async Task FillActionsAsync()
