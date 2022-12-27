@@ -8,7 +8,7 @@
     <VerticalStackLayout Spacing="25" Padding="20">
       <VerticalStackLayout VerticalOptions="StartAndExpand" BackgroundColor="AliceBlue">
         <Label
-                Text=".Net Maui Test Code Behind, v 6.0.486"
+                Text=".Net Maui Test Code Behind"
                 SemanticProperties.HeadingLevel="Level3"
                 FontSize="16"
                 HorizontalOptions="Center" />
